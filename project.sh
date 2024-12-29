@@ -6,10 +6,10 @@ echo "3)    Deleting files periodically (the ones older than 60 days, every mond
 echo "4)    Configuration options: deleting files, renaming files, editing files, adding 4 more options (to be updated), adding options for '--help', '--usage', 'debugging mode'"
 echo "-----------------------------------------------------------"
 
-select option in "Find old files" "Moving files locally" "Moving files in cloud" "Deleting certain files" "Delete selected file" "Rename selected file" "Edit files from a selected folder" "Configuration options"; do
+select option in "Find old files" "Moving files locally" "Moving files in cloud" "Deleting certain files" "Delete selected file" "Rename selected file" "Edit files from a selected folder" "Extra configuration option 1" "Extra configuration option 2" "Extra configuration option 3" "Extra configuration option 4"; do
     case $option in
         "Find old files")
-            echo "1) To be updated"
+            echo "To be updated"
             ;;
 
         "Moving files locally")
@@ -57,8 +57,20 @@ select option in "Find old files" "Moving files locally" "Moving files in cloud"
             done 
             ;;
 
-        "Configuration options")
-            echo "4) To be updated"
+        "Extra configuration option 1")
+            echo "To be updated"
+            ;;
+
+        "Extra configuration option 2")
+            echo "To be updated"
+            ;;
+
+        "Extra configuration option 3")
+            echo "To be updated"
+            ;;
+
+        "Extra configuration option 4")
+            echo "To be updated"
             ;;
 
         *)
