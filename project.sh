@@ -26,11 +26,34 @@ select option in "Find old files" "Moving files locally" "Moving files in cloud"
         "Moving files in cloud")
             read -rp "Source path: " src2;
             if [-z "$src2"]; then
-                echo "Error [Path doesn't exist]" 2> error.txt
+                echo "Error [Path doesn't exist]" >&2
             fi
 
+            if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+                git init
+            fi
+
+            if ! git config user.name &>/dev/null || ! git config user.email &>/dev/null; then
+                echo "Git identification not found."
+                read -rp "Enter Git username: " gitUserName
+                git config user.name "$gitUserName"
+                read -rp "Enter Git email: " gitEmail
+                git config user.email "$gitEmail"
+            fi
+
+            #git -C $src2 rev-parse --is-inside-work-tree
             git add $src2
             git commit -m "File moved in cloud"
+
+            if ! git remote | grep -q origin; then
+                read -rp "Enter URL of remote repository" remoteURL
+                git remote add origin "$remoteURL"
+            fi
+
+            if ! git branch --show-current &>/dev/null; then
+                git branch -M main
+            fi
+            
             git push -u origin main
             ;;
 
