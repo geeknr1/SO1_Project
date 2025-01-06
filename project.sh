@@ -53,6 +53,8 @@ select option in "Find old files" "Moving files locally" "Moving files in cloud"
             if ! git branch --show-current &>/dev/null; then
                 branchM="main"
                 git branch -M "$branchM"
+            else
+                branchM=$(git branch --show-current)
             fi
             
             git push -u origin "$branchM"
